@@ -171,3 +171,20 @@ console.log(depositsFor);
 const withdrawals = movements.filter(mov => mov < 0);
 console.log(withdrawals);
 */
+
+console.log(movements);
+
+// accumulator -> SNOWBALL
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+// console.log(balance);
+
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
+
+// Another solution
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
