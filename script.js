@@ -377,7 +377,7 @@ console.log(account4.movements.every(mov => mov > 0));
 // Separate callback
 const deposit = mov => mov > 0;
 console.log(movements.filter(deposit));
-*/
+
 /////////////////// The flat Method ///////////////////
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
 console.log(arr.flat());
@@ -406,3 +406,31 @@ const overalBalance2 = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, cur) => acc + cur, 0);
 console.log(overalBalance2);
+*/
+// Strings
+const owners = ['Jayden', 'Zach', 'Adam', 'Martha'];
+console.log(owners.sort());
+console.log(owners);
+// Numbers
+console.log(movements);
+
+// return < 0, A, B (keep order)
+// return > 0, B, A (switch order)
+
+// Ascending
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+// });
+movements.sort((a, b) => a - b);
+
+console.log(movements);
+
+// Descending
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (a < b) return 1;
+// });
+movements.sort((a, b) => b - a);
+
+console.log(movements);
