@@ -358,7 +358,7 @@ console.log(firstWithdrawal);
 console.log(accounts);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
-*/
+
 
 console.log(movements);
 
@@ -377,3 +377,32 @@ console.log(account4.movements.every(mov => mov > 0));
 // Separate callback
 const deposit = mov => mov > 0;
 console.log(movements.filter(deposit));
+*/
+/////////////////// The flat Method ///////////////////
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(2));
+
+// const accountMovements = accounts.map(acc => acc.movements);
+// console.log(accountMovements);
+
+// const allMovements = accountMovements.flat();
+// console.log(allMovements);
+
+// const overalBalance = allMovements.reduce((acc, cur) => acc + cur, 0);
+// console.log(overalBalance);
+
+// Don't Repeat Yourself:
+const overalBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, cur) => acc + cur, 0);
+console.log(overalBalance);
+
+// flatMap
+const overalBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, cur) => acc + cur, 0);
+console.log(overalBalance2);
