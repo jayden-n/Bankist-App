@@ -565,7 +565,7 @@ const isEven = n => n % 2 === 0;
 console.log(isEven(8));
 console.log(isEven(23));
 console.log(isEven(514));
-*/
+
 
 // 287,460,000,000
 const diameter = 287_460_000_000;
@@ -581,3 +581,32 @@ const PI = 3.1415;
 console.log(PI);
 
 console.log(Number('230000'));
+*/
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+
+console.log(23213124321442534564575686798793213123124245436464n);
+console.log(BigInt(23213124321442534564575686798793213123124245436464));
+
+// Operations
+console.log(10000n + 10000n);
+console.log(4324324324523524324545242343243n * 10000000n);
+
+// console.log(Math.sqrt(16n));
+const huge = 2134114131313123123n;
+const num = 23;
+
+console.log(huge * BigInt(num));
+
+// Exeptions
+console.log(20n > 15);
+console.log(20n === 20);
+console.log(typeof 20n);
+console.log(20n == 20);
+
+console.log(huge + ' is REALLY big!!!');
+
+// Divisions
+console.log(10n /3n);
+console.log(10 /3);
