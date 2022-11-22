@@ -85,6 +85,8 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+///////////////////////////////////////////////
+// Functions
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -160,7 +162,7 @@ btnLogin.addEventListener('click', function (e) {
   );
   console.log(currentAccount);
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
@@ -177,7 +179,7 @@ btnLogin.addEventListener('click', function (e) {
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
-  const amount = Number(inputTransferAmount.value);
+  const amount = +inputTransferAmount.value;
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
@@ -198,7 +200,7 @@ btnTransfer.addEventListener('click', function (e) {
 
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
-  const amount = Number(inputLoanAmount.value);
+  const amount = +inputLoanAmount.value;
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
     currentAccount.movements.push(amount);
@@ -213,7 +215,7 @@ btnClose.addEventListener('click', function (e) {
   e.preventDefault();
   if (
     inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
+    +inputClosePin.value === currentAccount.pin
   ) {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
@@ -313,8 +315,6 @@ console.log(avg1, avg2);
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 // LECTURES
-
-
 
 /*
 ---------- The map Method ------------
@@ -444,7 +444,7 @@ const overalBalance2 = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, cur) => acc + cur, 0);
 console.log(overalBalance2);
-*/
+
 // Strings
 const owners = ['Jayden', 'Zach', 'Adam', 'Martha'];
 console.log(owners.sort());
@@ -472,3 +472,39 @@ console.log(movements);
 movements.sort((a, b) => b - a);
 
 console.log(movements);
+*/
+///////////////////////////////////////////////////////////////////////////////
+// Numbers, dates, intl and timers
+
+console.log(23 === 23.0);
+// base 10 - 0 to 9
+// base 2 - 0 1
+
+console.log(0.1 + 0.2);
+console.log(0.1 + 0.2 === 0.3);
+// Conversion
+console.log(Number('23'));
+console.log(+'23');
+// Parsing
+console.log(Number.parseInt('30px', 10));
+console.log(Number.parseInt('e23', 10));
+
+console.log(Number.parseInt(' 2.3rem '));
+console.log(Number.parseFloat(' 2.3rem '));
+
+// console.log(parseFloat(' 2.3rem '));
+
+// Checking is value is NaN
+console.log(Number.isNaN(20));
+console.log(Number.isNaN(+'20X'));
+console.log(Number.isNaN(23 / 0));
+
+// Checking if value is number
+console.log(Number.isFinite(20));
+console.log(Number.isFinite('20'));
+console.log(Number.isFinite(+'20X'));
+console.log(Number.isFinite(23 / 0));
+
+console.log(Number.isInteger(23));
+console.log(Number.isInteger(23.0));
+console.log(Number.isInteger(23 / 0));
