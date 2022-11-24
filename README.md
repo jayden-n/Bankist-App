@@ -13,7 +13,7 @@ Log in credentials:
 * username: jd | password 2222
 
 ## Deployment
-Deployed Website:...
+Deployed Website: ...
 
 ## Built With
 * HTML5
