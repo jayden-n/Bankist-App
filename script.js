@@ -183,14 +183,41 @@ const updateUI = function (acc) {
   // Display summary
   calcDisplaySummary(acc);
 };
+
+const startLogOutTimer = () => {
+  const tick = () => {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    // In each call. print the remaining time to the UI
+    labelTimer.textContent = `${min} : ${sec}`;
+
+    // When 0 seconds, stop timer and log out user
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = `Log in to get started`;
+      containerApp.style.opacity = 0;
+    }
+
+    // Decrease 1s
+    time--;
+  };
+  // Set time to 5 minutes
+  let time = 30;
+
+  // Call the timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
+
 //////////////////////////////////////////////////////////
 // Event handlers
 
-let currentAccount;
+let currentAccount, timer;
 // FAKE ALWAYS LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 // Experimenting API
 
@@ -236,6 +263,11 @@ btnLogin.addEventListener('click', function (e) {
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
+
+    // Timer
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -264,6 +296,9 @@ btnTransfer.addEventListener('click', function (e) {
     receiverAcc.movementsDates.push(new Date().toISOString());
     // Update UI
     updateUI(currentAccount);
+    // Reset timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
 });
 
@@ -280,7 +315,9 @@ btnLoan.addEventListener('click', function (e) {
 
       currentAccount.movementsDates.push(new Date().toISOString());
       // update UI
-      updateUI(currentAccount);
+      updateUI(currentAccount); // Reset timer
+      clearInterval(timer);
+      timer = startLogOutTimer();
     }, 2500);
   }
   inputLoanAmount.value = '';
@@ -752,7 +789,7 @@ console.log(
   options,
   new Intl.NumberFormat(navigator.language).format(num)
 );
-*/
+
 
 // setTimeout
 const ingredients = ['olives', 'spinach'];
@@ -770,3 +807,4 @@ setInterval(function () {
   const now = new Date();
   console.log(now);
 }, 8000);
+*/
